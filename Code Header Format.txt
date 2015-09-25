@@ -1,0 +1,11 @@
+/*
+ * <project name>
+ * Author: <all contributors in comma separated list>
+ * Date: <most recent edit date>
+ * Version: <most recent version>
+ * 
+ * <description>
+ * 
+ * ======= VERSION HISTORY =======
+ * Version <#>: <short description of changes> - <author's initials> - <version date>
+ */
