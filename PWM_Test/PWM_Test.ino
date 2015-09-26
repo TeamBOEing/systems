@@ -1,7 +1,7 @@
 /*
  * PWM Test
  * Author: Corbin Murrow
- * Date: 25 September 2015
+ * Date: 26 September 2015
  * Version: 1.1
  * 
  * This software tests PWM output to turn the continuous 
@@ -10,6 +10,7 @@
  * as well as left forward/right backward and vice versa.
  * 
  * ======= VERSION HISTORY =======
+ * Version 1.2: Updated base values for servos - CM - 26 September 2015
  * Version 1.1: Coded in setup and main - CM - 25 September 2015
  * Version 1.0: Created file - CM - 25 September 2015
  */
@@ -18,14 +19,15 @@
 
 #define LEFTPIN 5
 #define RIGHTPIN 6
-#define LEFTSTOP 1505 //these have to be determined experimentally per motor
-#define RIGHTSTOP 1490 //these have to be determined experimentally per motor
+#define LEFTBASE 1504 //these have to be determined experimentally per motor
+#define RIGHTBASE 1492 //these have to be determined experimentally per motor
 #define GO 1500 //the nominal stop value
 
 Servo leftServo;
 Servo rightServo;
 
-void setup() {
+void setup() 
+{
   //This code runs once
 
   //Set up servos
@@ -38,53 +40,54 @@ void setup() {
 
 int speed = 100;
 
-void loop() {
-
+void loop() 
+{
   //Both Forward
   Serial.println("Both Forward");
-  leftServo.write(GO+speed);
-  rightServo.write(GO-speed);
+  leftServo.writeMicroseconds(GO+speed);
+  rightServo.writeMicroseconds(GO-speed);
   delay(5000); //pause for 5 seconds
   Serial.println("Both Stop");
-  leftServo.write(LEFTSTOP);
-  rightServo.write(RIGHTSTOP);
+  leftServo.writeMicroseconds(LEFTBASE);
+  rightServo.writeMicroseconds(RIGHTBASE);
   delay(5000);
 
   Serial.println();
 
   //Both Backward
   Serial.println("Both Backward");
-  leftServo.write(GO-speed);
-  rightServo.write(GO+speed);
+  leftServo.writeMicroseconds(GO-speed);
+  rightServo.writeMicroseconds(GO+speed);
   delay(5000); //pause for 5 seconds
   Serial.println("Both Stop");
-  leftServo.write(LEFTSTOP);
-  rightServo.write(RIGHTSTOP);
+  leftServo.writeMicroseconds(LEFTBASE);
+  rightServo.writeMicroseconds(RIGHTBASE);
   delay(5000);
 
   Serial.println();
 
   //Left Forward/Right Backward
   Serial.println("Left Forward/Right Backward");
-  leftServo.write(GO+speed);
-  rightServo.write(GO+speed);
+  leftServo.writeMicroseconds(GO+speed);
+  rightServo.writeMicroseconds(GO+speed);
   delay(5000); //pause for 5 seconds
   Serial.println("Both Stop");
-  leftServo.write(LEFTSTOP);
-  rightServo.write(RIGHTSTOP);
+  leftServo.writeMicroseconds(LEFTBASE);
+  rightServo.writeMicroseconds(RIGHTBASE);
   delay(5000);
 
   Serial.println();
 
   //Left Backward/Right Forward
   Serial.println("Left Backward/Right Forward");
-  leftServo.write(GO-speed);
-  rightServo.write(GO-speed);
+  leftServo.writeMicroseconds(GO-speed);
+  rightServo.writeMicroseconds(GO-speed);
   delay(5000); //pause for 5 seconds
   Serial.println("Both Stop");
-  leftServo.write(LEFTSTOP);
-  rightServo.write(RIGHTSTOP);
+  leftServo.writeMicroseconds(LEFTBASE);
+  rightServo.writeMicroseconds(RIGHTBASE);
   delay(5000);
 
   Serial.println();
 }
+
