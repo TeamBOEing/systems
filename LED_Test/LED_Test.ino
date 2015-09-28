@@ -10,31 +10,38 @@
  *  monitor when the LEDs turn on or off.
  *  
  *  ====== VERSION HISTORY ======
+ *  Version 1.2: Included use of constants and updated pin number - CC - 28 September 2015
  *  Version 1.1: Updated file header - CM - 25 September 2015
  *  Version 1.0: Created project - CM - 20 September 2015
  */
 
+const int LED_PIN_GREEN = 7;
+const int LED_PIN_RED = 8;
+const int BAUD_RATE = 115200;
+const int BLINK_SPEED = 1000;
+
 // the setup function runs once when you press reset or power the board
 void setup() {
-  Serial.begin(115200);
-  // initialize digital pin 13 as an output.
-  pinMode(13, OUTPUT);
-  pinMode(12, OUTPUT);
+  Serial.begin(BAUD_RATE);
+  // initialize digital pins for Red and Green LEDs as outputs
+  pinMode(LED_PIN_GREEN, OUTPUT);
+  pinMode(LED_PIN_RED, OUTPUT);
 }
 
 // the loop function runs over and over again forever
 void loop() {
-  digitalWrite(13, HIGH);   // turn the LED on (HIGH is the voltage level)
+  digitalWrite(LED_PIN_GREEN, HIGH);   // turn the LED on (HIGH is the voltage level)
   Serial.println("Green On");
-  delay(1000);              // wait for a second
-  digitalWrite(13, LOW);    // turn the LED off by making the voltage LOW
+  delay(BLINK_SPEED);              // wait for a second
+  digitalWrite(LED_PIN_GREEN, LOW);    // turn the LED off by making the voltage LOW
   Serial.println("Green Off");
-  delay(1000);              // wait for a second
-  
-  digitalWrite(12, HIGH);
+  delay(BLINK_SPEED);              // wait for a second
+
+  // Perform same as above with the red LED
+  digitalWrite(LED_PIN_RED, HIGH);
   Serial.println("Red On");
-  delay(1000);
-  digitalWrite(12, LOW);
+  delay(BLINK_SPEED);
+  digitalWrite(LED_PIN_RED, LOW);
   Serial.println("Red Off");
-  delay(1000);
+  delay(BLINK_SPEED);
 }
