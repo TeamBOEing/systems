@@ -2,7 +2,7 @@
  * PWM Test
  * Author: Corbin Murrow
  * Date: 26 September 2015
- * Version: 1.1
+ * Version: 1.2
  * 
  * This software tests PWM output to turn the continuous 
  * rotation servos that the BOEbot uses as motors. Left and 
@@ -22,6 +22,7 @@
 #define LEFTBASE 1504 //these have to be determined experimentally per motor
 #define RIGHTBASE 1492 //these have to be determined experimentally per motor
 #define GO 1500 //the nominal stop value
+#define BAUD 115200 //115200 baud
 
 Servo leftServo;
 Servo rightServo;
@@ -35,7 +36,7 @@ void setup()
   rightServo.attach(RIGHTPIN); //Physical pin 12 to right servo
 
   //Set up Serial Monitor
-  Serial.begin(115200); //115200 baud
+  Serial.begin(BAUD); 
 }
 
 int speed = 100;
