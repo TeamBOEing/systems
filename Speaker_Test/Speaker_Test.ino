@@ -1,8 +1,8 @@
 /*
  * Speaker Test
- * Author: Corbin Murrow
- * Date: 26 September 2015
- * Version: 1.1
+ * Author: Corbin Murrow, Cody Crossley
+ * Date: 28 September 2015
+ * Version: 1.2
  * 
  * This software will output multiple tones via an analog output 
  * pin from the ATmega microprocessor. This test is necessary to
@@ -10,39 +10,43 @@
  * can be fulfilled.
  * 
  * ======= VERSION HISTORY =======
+ * Version 1.2: Added TONE_LENGTH, improved comments - CC - 28 September 2015
  * Version 1.1: Played C Major Scale - CM - 26 September 2015
  * Version 1.0: Created file and header - CM - 25 September 2015
  */
 
-#define SPEAKERPIN 17
+#define SPEAKER_PIN 17      // Pin speaker is attached to
+#define TONE_LENGTH 500     // TONE_LENGTH ms for each freqency
+#define BAUD_LENGTH 115200  // Used for Serial monitor
 
 void setup() 
 {
-  // put your setup code here, to run once:
-  Serial.begin(115200);
+  Serial.begin(BAUD_LENGTH);
   Serial.println("Play a scale!\n");
 }
 
 void loop() 
 {
-  // put your main code here, to run repeatedly:
+  // tone uses (pin, frequency, time) format
   Serial.println("Speaker on.");
-  tone(SPEAKERPIN, 262, 500); //C4
-  delay(500);
-  tone(SPEAKERPIN, 294, 500); //D4
-  delay(500);
-  tone(SPEAKERPIN, 330, 500); //E4
-  delay(500);
-  tone(SPEAKERPIN, 349, 500); //F4
-  delay(500);
-  tone(SPEAKERPIN, 392, 500); //G4
-  delay(500);
-  tone(SPEAKERPIN, 440, 500); //A4
-  delay(500);
-  tone(SPEAKERPIN, 494, 500); //B4
-  delay(500);
-  tone(SPEAKERPIN, 523, 500); //C4
-  delay(500);
+  
+  tone(SPEAKER_PIN, 262, TONE_LENGTH); // C4
+  delay(TONE_LENGTH);
+  tone(SPEAKER_PIN, 294, TONE_LENGTH); // D4
+  delay(TONE_LENGTH);
+  tone(SPEAKER_PIN, 330, TONE_LENGTH); // E4
+  delay(TONE_LENGTH);
+  tone(SPEAKER_PIN, 349, TONE_LENGTH); // F4
+  delay(TONE_LENGTH);
+  tone(SPEAKER_PIN, 392, TONE_LENGTH); // G4
+  delay(TONE_LENGTH);
+  tone(SPEAKER_PIN, 440, TONE_LENGTH); // A4
+  delay(TONE_LENGTH);
+  tone(SPEAKER_PIN, 494, TONE_LENGTH); // B4
+  delay(TONE_LENGTH);
+  tone(SPEAKER_PIN, 523, TONE_LENGTH); // C4
+  delay(TONE_LENGTH);
+  
   Serial.println("Speaker off.");
 
   delay(5000);
