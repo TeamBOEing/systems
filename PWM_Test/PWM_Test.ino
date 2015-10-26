@@ -17,26 +17,13 @@
  */
 
 #include <Servo.h>
+#include <BOEbot.h>
 
-#define BAUD_RATE 115200
-#define LEFTPIN 5
-#define RIGHTPIN 6
-#define LEFTBASE 1504         // Use PWM_Calibration to determine this values
-#define RIGHTBASE 1492        // Use PWM_Calibration to determine this values
-#define BASE_STOP_VALUE 1500  // The nominal stop value
-#define DELAY_TIME 5000
-
-Servo leftServo;
-Servo rightServo;
+#define DELAY 1000
 
 void setup() 
 {
-  //Set up servos
-  leftServo.attach(LEFTPIN); //Physical pin 11 to left servo
-  rightServo.attach(RIGHTPIN); //Physical pin 12 to right servo
-
-  //Set up Serial Monitor
-  Serial.begin(BAUD_RATE);
+  initialize();
 }
 
 int speed = 100;
@@ -47,49 +34,51 @@ void loop()
   
   //Both Forward
   Serial.println("Both Forward");
-  leftServo.writeMicroseconds(BASE_STOP_VALUE + speed);
-  rightServo.writeMicroseconds(BASE_STOP_VALUE - speed);
-  delay(DELAY_TIME); //pause for 1 second
+  leftMotor(speed);
+  rightMotor(speed);
+  
+  delay(DELAY); //pause for 1 second
   Serial.println("Both Stop");
-  leftServo.writeMicroseconds(LEFTBASE);
-  rightServo.writeMicroseconds(RIGHTBASE);
-  delay(DELAY_TIME);
+  leftMotor(0);
+  rightMotor(0);
+  delay(DELAY);
 
   Serial.println();
 
   //Both Backward
   Serial.println("Both Backward");
-  leftServo.writeMicroseconds(BASE_STOP_VALUE - speed);
-  rightServo.writeMicroseconds(BASE_STOP_VALUE + speed);
-  delay(DELAY_TIME); //pause for 1 second
+  leftMotor(-speed);
+  rightMotor(-speed);
+  delay(DELAY); //pause for 1 second
+  
   Serial.println("Both Stop");
-  leftServo.writeMicroseconds(LEFTBASE);
-  rightServo.writeMicroseconds(RIGHTBASE);
-  delay(DELAY_TIME);
+  leftMotor(0);
+  rightMotor(0);
+  delay(DELAY);
 
   Serial.println();
 
   //Left Forward/Right Backward
   Serial.println("Left Forward/Right Backward");
-  leftServo.writeMicroseconds(BASE_STOP_VALUE + speed);
-  rightServo.writeMicroseconds(BASE_STOP_VALUE + speed);
-  delay(DELAY_TIME); //pause for 1 second
+  leftMotor(speed);
+  rightMotor(-speed);
+  delay(DELAY); //pause for 1 second
   Serial.println("Both Stop");
-  leftServo.writeMicroseconds(LEFTBASE);
-  rightServo.writeMicroseconds(RIGHTBASE);
-  delay(DELAY_TIME);
+  leftMotor(0);
+  rightMotor(0);
+  delay(DELAY);
 
   Serial.println();
 
   //Left Backward/Right Forward
   Serial.println("Left Backward/Right Forward");
-  leftServo.writeMicroseconds(BASE_STOP_VALUE - speed);
-  rightServo.writeMicroseconds(BASE_STOP_VALUE - speed);
-  delay(DELAY_TIME); //pause for 1 second
+  leftMotor(-speed);
+  rightMotor(speed);
+  delay(DELAY); //pause for 1 second
   Serial.println("Both Stop");
-  leftServo.writeMicroseconds(LEFTBASE);
-  rightServo.writeMicroseconds(RIGHTBASE);
-  delay(DELAY_TIME);
+  leftMotor(0);
+  rightMotor(0);
+  delay(DELAY);
 
   Serial.println();
 }
