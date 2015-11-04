@@ -41,7 +41,7 @@ void loop()
   Serial.println("Both Stop");
   leftMotor(0);
   rightMotor(0);
-  delay(DELAY);
+  delay(5*DELAY);
 
   Serial.println();
 
@@ -54,7 +54,7 @@ void loop()
   Serial.println("Both Stop");
   leftMotor(0);
   rightMotor(0);
-  delay(DELAY);
+  delay(5*DELAY);
 
   Serial.println();
 
@@ -66,7 +66,7 @@ void loop()
   Serial.println("Both Stop");
   leftMotor(0);
   rightMotor(0);
-  delay(DELAY);
+  delay(5*DELAY);
 
   Serial.println();
 
@@ -78,7 +78,7 @@ void loop()
   Serial.println("Both Stop");
   leftMotor(0);
   rightMotor(0);
-  delay(DELAY);
+  delay(5*DELAY);
 
   Serial.println();
 }
