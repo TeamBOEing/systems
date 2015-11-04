@@ -1,15 +1,13 @@
 /*
  * PWM Test
- * Author: Corbin Murrow, Cody Crossley
- * Date: 28 September 2015
- * Version: 1.3
+ * Author: Corbin Murrow, Cody Crossley, Daniel Sheldon
+ * Date: 3 november 2015
+ * Version: 1.4
  * 
- * This software tests PWM output to turn the continuous 
- * rotation servos that the BOEbot uses as motors. Left and 
- * right motor will turn forward and backward simultaneously 
- * as well as left forward/right backward and vice versa.
+ * This software validates that the pcb properly controlles the motors
  * 
  * ======= VERSION HISTORY =======
+ * Version 1.4: rewritten with current function calls to execute subsystem test 3 november 2015
  * Version 1.3: Updated comments, added more defines - CC - 28 September 2015
  * Version 1.2: Updated base values for servos - CM - 26 September 2015
  * Version 1.1: Coded in setup and main - CM - 25 September 2015
@@ -17,69 +15,64 @@
  */
 
 #include <Servo.h>
-#include <BOEbot.h>
-
-#define DELAY 1000
+#include "BOEbot.h"
 
 void setup() 
 {
   initialize();
 }
-
-int speed = 100;
+int shortDelay = 100;
+int longDelay = 1000;
+int pauseDelay = 3000;
+int speed = 250;
 
 void loop() 
 {
-  Serial.println("\nMotor Test Start\n");
+  Serial.println("\nMotor Test Program Start\n");
   
-  //Both Forward
-  Serial.println("Both Forward");
-  leftMotor(speed);
-  rightMotor(speed);
-  
-  delay(DELAY); //pause for 1 second
-  Serial.println("Both Stop");
-  leftMotor(0);
-  rightMotor(0);
-  delay(5*DELAY);
+  //Left Forward
+  Serial.println("Left Forward");
+  turnLeftMotorForward(speed);
+  delay(longDelay); // let run for a moment
+  Serial.println("Stop");
+  stopLeftMotor();
+  stopRightMotor();
+  delay(shortDelay);
 
   Serial.println();
 
-  //Both Backward
-  Serial.println("Both Backward");
-  leftMotor(-speed);
-  rightMotor(-speed);
-  delay(DELAY); //pause for 1 second
-  
-  Serial.println("Both Stop");
-  leftMotor(0);
-  rightMotor(0);
-  delay(5*DELAY);
+  //Left Backward
+  Serial.println("Left Backward");
+  turnLeftMotorBackward(speed);
+  delay(longDelay); // let run for a moment
+  Serial.println("Stop");
+  stopLeftMotor();
+  stopRightMotor();
+  delay(shortDelay);
 
   Serial.println();
 
-  //Left Forward/Right Backward
-  Serial.println("Left Forward/Right Backward");
-  leftMotor(speed);
-  rightMotor(-speed);
-  delay(DELAY); //pause for 1 second
-  Serial.println("Both Stop");
-  leftMotor(0);
-  rightMotor(0);
-  delay(5*DELAY);
+  //Right Forward
+  Serial.println("Right Forward");
+  turnRightMotorForward(speed);
+  delay(longDelay); // let run for a moment
+  Serial.println("Stop");
+  stopLeftMotor();
+  stopRightMotor();
+  delay(shortDelay);
 
   Serial.println();
 
-  //Left Backward/Right Forward
-  Serial.println("Left Backward/Right Forward");
-  leftMotor(-speed);
-  rightMotor(speed);
-  delay(DELAY); //pause for 1 second
-  Serial.println("Both Stop");
-  leftMotor(0);
-  rightMotor(0);
-  delay(5*DELAY);
+  //Right Backward
+  Serial.println("Right Backward");
+  turnRightMotorBackward(speed);
+  delay(longDelay); // let run for a moment
+  Serial.println("Stop");
+  stopLeftMotor();
+  stopRightMotor();
+  delay(shortDelay);
 
   Serial.println();
+
 }
 
