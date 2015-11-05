@@ -29,6 +29,8 @@ bool leftIrDetected, rightIrDetected;   // HIGH when object is detected
 
 void loop() {
   // Detect IR signals bouncing off objects
+
+  
   Serial.print("Left IR: ");
   // If IR sensor detects object, the return will be HIGH
   if ( leftObstacle() ) {
@@ -39,7 +41,7 @@ void loop() {
     digitalWrite(LED_PIN_GREEN, LOW);       // Turn green LED off if not detected
     Serial.print("0");
   }
-
+  
   // If IR sensor detects object, the return will be HIGH
   Serial.print("\tRight IR: ");
   if ( rightObstacle() ) {

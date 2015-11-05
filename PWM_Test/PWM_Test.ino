@@ -14,13 +14,14 @@
  * Version 1.0: Created file - CM - 25 September 2015
  */
 
+#include <BOEbot.h>
 #include <Servo.h>
-#include "BOEbot.h"
 
 void setup() 
 {
   initialize();
 }
+
 int shortDelay = 100; //let motors stop spinning before sending new commands
 int longDelay = 1000; //how long any given motor rotation should be
 int pauseDelay = 3000;//definite pause between sections of motor test
