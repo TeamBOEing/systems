@@ -17,7 +17,7 @@
  */
 
 #include <Servo.h>
-#include "BOEbot.h"
+#include <BOEbot.h>
 
 #define LOOP_DELAY_TIME 1000      // Wait 1 second between object detections
 
@@ -32,22 +32,22 @@ void loop() {
   Serial.print("Left IR: ");
   // If IR sensor detects object, the return will be HIGH
   if ( leftObstacle() ) {
-    digitalWrite(LED_PIN_GREEN, HIGH);      // Turn green LED on if detected
+    turnOnGreenLED();                       // Turn green LED on if detected
     Serial.print("1");
   }
   else {
-    digitalWrite(LED_PIN_GREEN, LOW);       // Turn green LED off if not detected
+    turnOffGreenLED();                      // Turn green LED off if not detected
     Serial.print("0");
   }
-
+  
   // If IR sensor detects object, the return will be HIGH
   Serial.print("\tRight IR: ");
   if ( rightObstacle() ) {
-    digitalWrite(LED_PIN_RED, HIGH);        // Turn red LED on if detected
+    turnOnRedLED();                         // Turn red LED on if detected
     Serial.println("1");
   }
   else {
-    digitalWrite(LED_PIN_RED, LOW);         // Turn red LED off if not detected
+    turnOffRedLED();                        // Turn red LED off if not detected
     Serial.println("0");
   }
   

@@ -21,6 +21,7 @@ void setup()
 {
   initialize();
 }
+
 int shortDelay = 100; //let motors stop spinning before sending new commands
 int longDelay = 1000; //how long any given motor rotation should be
 int pauseDelay = 3000;//definite pause between sections of motor test
@@ -168,4 +169,3 @@ void loop()
   Serial.println("all testing complete, halt.");
   halt();
 }
-
