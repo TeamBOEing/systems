@@ -1,13 +1,13 @@
 /*
  * PWM Test
  * Author: Corbin Murrow, Cody Crossley, Daniel Sheldon
- * Date: 3 november 2015
+ * Date: 03 November 2015
  * Version: 1.4
  * 
- * This software validates that the pcb properly controlles the motors
+ * This software validates the PCB properly controls the motors.
  * 
  * ======= VERSION HISTORY =======
- * Version 1.4: rewritten with current function calls to execute subsystem test 3 november 2015
+ * Version 1.4: Rewritten with current function calls to execute subsystem test - DS - 03 November 2015
  * Version 1.3: Updated comments, added more defines - CC - 28 September 2015
  * Version 1.2: Updated base values for servos - CM - 26 September 2015
  * Version 1.1: Coded in setup and main - CM - 25 September 2015
@@ -15,7 +15,7 @@
  */
 
 #include <Servo.h>
-#include "BOEbot.h"
+#include <BOEbot.h>
 
 void setup() 
 {
